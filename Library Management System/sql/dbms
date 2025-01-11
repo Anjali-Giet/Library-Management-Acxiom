@@ -1,0 +1,46 @@
+-- Table for Users
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('Admin', 'User') NOT NULL
+);
+
+-- Table for Books
+CREATE TABLE books (
+    book_id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    is_available BOOLEAN DEFAULT TRUE,
+    serial_number VARCHAR(50) UNIQUE NOT NULL
+);
+
+-- Table for Membership
+CREATE TABLE memberships (
+    membership_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Table for Transactions
+CREATE TABLE transactions (
+    transaction_id INT AUTO_INCREMENT PRIMARY KEY,
+    book_id INT NOT NULL,
+    user_id INT NOT NULL,
+    issue_date DATE NOT NULL,
+    return_date DATE NOT NULL,
+    fine_paid BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (book_id) REFERENCES books(book_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+-- Table for Fines
+CREATE TABLE fines (
+    fine_id INT AUTO_INCREMENT PRIMARY KEY,
+    transaction_id INT NOT NULL,
+    fine_amount DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (transaction_id) REFERENCES transactions(transaction_id)
+);
