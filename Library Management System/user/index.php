@@ -29,6 +29,7 @@ echo "Welcome, " . $_SESSION['name'] . "!";  // Display the user's name from the
                 <li><a href="fine_pay.php">Pay Fine</a></li>
                 <li><a href="issue_book.php">Issue Book</a></li>
                 <li><a href="return_book.php">Return Book</a></li>
+                <li><a href="logout.php">Logout</a></li>
             </ul>
         </nav>
     </header>
