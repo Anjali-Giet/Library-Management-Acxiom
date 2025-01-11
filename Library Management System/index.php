@@ -28,6 +28,7 @@ echo "Welcome, " . $_SESSION['name'] . "!";  // Display the user's name from the
                 <li><a href="admin/maintenance.php">Maintenance</a></li>
                 <li><a href="admin/add_membership.php">Membership</a></li>
                 <li><a href="admin/add_book.php">Add Book</a></li>
+                <li><a href="admin/logout.php">Logout</a></li>
             </ul>
         </nav>
     </header>
